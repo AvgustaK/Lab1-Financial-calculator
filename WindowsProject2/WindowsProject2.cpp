@@ -215,7 +215,7 @@ bool IsNumericString(const wchar_t* str)
 {
     for (size_t i = 0; i < wcslen(str); ++i)
     {
-        if (!iswdigit(str[i]) && str[i] != L'.' && str[i] != L',')
+        if (!iswdigit(str[i]) && str[i] != L'.' && str[i] != L',' && str[i] != L'-')
             return false;
     }
     return true;
