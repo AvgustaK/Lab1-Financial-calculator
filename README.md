@@ -1,2 +1,2 @@
 # Lab1-Financial-calculator
-Исполняемым файлом является WindowsProject2.exe
+Исполняемым файлом является Lab_calulator.exe
