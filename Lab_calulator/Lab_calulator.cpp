@@ -1,4 +1,4 @@
-﻿// Lab_calulator.cpp : Определяет точку входа для приложения.
+// Lab_calulator.cpp : Определяет точку входа для приложения.
 //
 
 #include "framework.h"
@@ -296,7 +296,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             operation2 = SendMessage(GetDlgItem(hWnd, 103), CB_GETCURSEL, 0, 0);
             operation3 = SendMessage(GetDlgItem(hWnd, 109), CB_GETCURSEL, 0, 0);
             int priority = 1;
-            if (operation3 == 2 || operation3 == 3) {
+            if ((operation3 == 2 || operation3 == 3) && (operation2 == 0 || operation2 == 1)) {
                 priority = 2;
             }
             //
