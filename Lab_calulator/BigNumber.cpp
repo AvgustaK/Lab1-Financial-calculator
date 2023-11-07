@@ -1,7 +1,16 @@
-﻿#include <cstdlib>
+#include <cstdlib>
+#include <sstream>
 #include "BigNumber.h"
 using namespace std;
 
+template <typename T>
+std::string to_string_with_precision(const T a_value, const int n = 10)
+{
+	std::ostringstream out;
+	out.precision(n);
+	out << std::fixed << a_value;
+	return std::move(out).str();
+}
 namespace bgn {
 
 	const string ErrorStr = "error";
@@ -332,21 +341,6 @@ namespace bgn {
 			str1 = str1.substr(1, str1.size() - 1);
 			str2 = str2.substr(1, str2.size() - 1);
 		}
-		/*if (str1[0] == '+' || str1[0] == '-') {
-			if (str1[0] == '-') {
-				isNeg = true;
-			}
-
-			str1 = str1.substr(1, str1.size() - 1);
-		}
-
-		if (str2[0] == '+' || str2[0] == '-') {
-			if (str2[0] == '-') {
-				isNeg = false;
-			}
-
-			str2 = str2.substr(1, str2.size() - 1);
-		}*/
 
 		int floatCount1 = 0, floatCount2 = 0;
 		size_t found1 = str1.find(".");
@@ -401,7 +395,7 @@ namespace bgn {
 			++nInteger;
 			dividend = sub_big_number(dividend, divisor);
 			if (dividend == "0") { // Divisible
-				return to_string(nInteger);
+				return to_string_with_precision(nInteger);
 			}
 		}
 
@@ -422,9 +416,9 @@ namespace bgn {
 		}
 
 		if (nFloat == 0)
-			return to_string(nInteger);
+			return to_string_with_precision(nInteger);
 		else
-			return to_string(nInteger) + '.' + floatRes;
+			return to_string_with_precision(nInteger) + '.' + floatRes;
 	}
 
 	/// A function to perform division of large numbers
@@ -456,7 +450,7 @@ namespace bgn {
 		//point number
 		double fLeave = 1.0 * leave / divisor;
 		if (fLeave != 0) {
-			fl += to_string(fLeave);
+			fl += to_string_with_precision(fLeave);
 			fl.erase(fl.begin(), fl.begin() + 1);
 			for (int i = 0; i < fl.size(); i++) {
 				ans.push_back(fl[i]);
